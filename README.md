@@ -41,3 +41,5 @@ docker-compose -f docker-compose.prod.yml run --rm django /app/manage.py migrate
 
 ### TO-DOs:
 - HTTPS for production 
+
+### [Docker cheatsheet](https://github.com/abel-castro/docker_cheatsheet)
