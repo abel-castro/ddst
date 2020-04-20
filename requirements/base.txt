@@ -1,6 +1,6 @@
-django>=2.2.3
+django==2.*
 psycopg2==2.8.3
-Pillow==6.0.0
+pillow>=6.2.2
 environs==5.2.0 # https://pypi.org/project/environs/#basic-usage
 django-extensions==2.2.1
 Werkzeug==0.15.5 # required for django-extensions
