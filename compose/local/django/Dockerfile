@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.9-slim-buster
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -6,13 +6,18 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements /requirements
 
 # install dependencies
-RUN apk update \
-    && apk add --virtual build-deps gcc python3-dev musl-dev \
-    && apk add postgresql-dev \
-    # Pillow dependencies
-    jpeg-dev zlib-dev \
-    && pip install --upgrade pip && pip install --no-cache-dir -r /requirements/dev.txt \
-    && apk del build-deps
+RUN apt-get update \
+  # dependencies for building Python packages
+  && apt-get install -y build-essential \
+  # psycopg2 dependencies
+  && apt-get install -y libpq-dev \
+  # project dependencies
+  && apt-get install -y netcat \
+  # cleaning up unused files
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --upgrade pip && pip install --no-cache-dir -r /requirements/dev.txt
 
 # copy files
 COPY ./compose/entrypoint.sh /entrypoint.sh
