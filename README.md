@@ -4,7 +4,6 @@ Development and production starter template for projects with django and docker.
 ## Features
 * django + postgres
 * serve static files in production with nginx
-* Small docker images: about 170 MB. 
 
 ## Getting started
 1. Download a copy of this repository.
@@ -41,5 +40,3 @@ docker-compose -f docker-compose.prod.yml run --rm django /app/manage.py migrate
 
 ### TO-DOs:
 - HTTPS for production 
-
-### [Docker cheatsheet](https://github.com/abel-castro/docker_cheatsheet)
