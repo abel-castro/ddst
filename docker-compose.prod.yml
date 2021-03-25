@@ -14,7 +14,7 @@ services:
     image: ddst_prod_django
     volumes:
       - media_volume:/app/media
-      - static_volume:/app/static
+      - static_volume:/app/staticfiles
 
   postgres:
     build:
@@ -34,7 +34,7 @@ services:
       - 80:80
     volumes:
       - media_volume:/app/media
-      - static_volume:/app/static
+      - static_volume:/app/staticfiles
 
 volumes:
   media_volume:

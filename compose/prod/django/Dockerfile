@@ -27,10 +27,9 @@ COPY ./compose/prod/start /start
 RUN sed -i 's/\r//' /start && chmod +x /start
 
 #create app user
-RUN addgroup -S django \
-    && adduser -S -G django django
-
+RUN groupadd -r django && useradd --no-log-init -r -g django django
 COPY --chown=django:django ./app /app
+RUN mkdir /app/staticfiles && chown django:django /app/staticfiles
 
 # set container's default user
 USER django
