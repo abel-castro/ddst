@@ -15,27 +15,42 @@ sh rename_project.sh YOUR_PROJECT_NAME
 ### Development
 - Create a .env file from the template env_template_dev with the desired values.
 
-- Build the development image: ```docker-compose build ```
+- Build the development image: ```docker compose build ```
 
-- Run ```docker-compose up``` and go to http://0.0.0.0:8000
+- Run ```docker compose up``` and go to http://0.0.0.0:8000
 to see your runserver.
+
+- Create a superuser:
+```
+docker compose run  django /app/manage.py createsuperuser
+```
+
+- Create migrations
+```
+docker compose run  django /app/manage.py makemigrations
+```
+
+- Apply migrations
+```
+docker compose run  django /app/manage.py migrate
+```
 
 ### Production
 - Create a .env file from the template env_template_prd with the desired values.
 
 - Build the production image:
 ```
-docker-compose -f docker-compose.prod.yml build
+docker compose -f docker-compose.prod.yml build
 ``` 
 
 - Start your production server with: 
 ```
-docker-compose -f docker-compose.prod.yml up
+docker compose -f docker-compose.prod.yml up
 ```
 
 - Run migrations:
 ```
-docker-compose -f docker-compose.prod.yml run --rm django /app/manage.py migrate
+docker compose -f docker-compose.prod.yml run --rm django /app/manage.py migrate
 ```
 
 ### TO-DOs:
