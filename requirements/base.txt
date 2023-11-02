@@ -1,4 +1,4 @@
-django==4.2.3
+django==4.2.7
 psycopg2==2.9.6
 environs==9.5.0 # https://pypi.org/project/environs/#basic-usage
 django-extensions==3.2.1
